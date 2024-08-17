@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import styles from "./Favorites.module.css";
 import { FavoritesContext } from "../../store/context/Favorites-Context";
 import MeetUpList from "../../components/MeetUpList/MeetUpList";
 

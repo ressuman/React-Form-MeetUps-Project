@@ -1,6 +1,5 @@
 import axios from "axios";
 import { NewMeetUpForm } from "../../components/NewMeetUpForm/NewMeetUpForm";
-import classes from "./NewMeetUp.module.css";
 import { useNavigate } from "react-router-dom";
 
 export const NewMeetUp = () => {

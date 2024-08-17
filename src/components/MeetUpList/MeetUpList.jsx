@@ -1,5 +1,6 @@
 import { MeetUpItem } from "../MeetUpItem/MeetUpItem";
 import classes from "./MeetUpList.module.css";
+import PropTypes from "prop-types";
 
 export default function MeetUpList({ meetups }) {
   return (
@@ -17,3 +18,15 @@ export default function MeetUpList({ meetups }) {
     </ul>
   );
 }
+
+MeetUpList.propTypes = {
+  meetups: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+      address: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};

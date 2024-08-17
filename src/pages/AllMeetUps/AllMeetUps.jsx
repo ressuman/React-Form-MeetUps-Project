@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import MeetUpList from "../../components/MeetUpList/MeetUpList";
-import classes from "./AllMeetUps.module.css";
 import axios from "axios";
 
 export const AllMeetUps = () => {

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Card } from "../Card/Card";
 import styles from "./MeetUpItem.module.css";
 import { FavoritesContext } from "../../store/context/Favorites-Context";
+import PropTypes from "prop-types";
 
 export const MeetUpItem = ({ id, title, image, address, description }) => {
   const favoriteContext = useContext(FavoritesContext);
@@ -43,4 +44,12 @@ export const MeetUpItem = ({ id, title, image, address, description }) => {
       </Card>
     </li>
   );
+};
+
+MeetUpItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
 };

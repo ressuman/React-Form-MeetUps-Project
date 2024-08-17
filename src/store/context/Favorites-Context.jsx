@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 const FavoritesContext = createContext({
   favorites: [],
@@ -95,5 +96,9 @@ function FavoritesContextProvider({ children }) {
     </FavoritesContext.Provider>
   );
 }
+
+FavoritesContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export { FavoritesContext, FavoritesContextProvider };

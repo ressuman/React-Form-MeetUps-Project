@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { Card } from "../Card/Card";
 import styles from "./NewMeetUpForm.module.css";
+import PropTypes from "prop-types";
 
 export const NewMeetUpForm = ({ onAddMeetUp }) => {
   const titleInputRef = useRef();
@@ -66,7 +67,10 @@ export const NewMeetUpForm = ({ onAddMeetUp }) => {
           <button type="submit">Add Meet Up</button>
         </div>
       </form>
-      ;
     </Card>
   );
+};
+
+NewMeetUpForm.propTypes = {
+  onAddMeetUp: PropTypes.func.isRequired,
 };
