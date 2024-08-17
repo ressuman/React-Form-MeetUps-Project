@@ -12,7 +12,9 @@ export const AllMeetUps = () => {
       setIsLoading(true);
       try {
         const response = await axios.get(
-          import.meta.env.VITE_REACT_BACKEND_FIREBASE_DATABASE_SERVER_URL
+          `${
+            import.meta.env.VITE_REACT_BACKEND_FIREBASE_DATABASE_SERVER_URL
+          }/meetups.json`
         );
         const data = response.data;
 
@@ -39,7 +41,7 @@ export const AllMeetUps = () => {
   if (isLoading) {
     return (
       <section>
-        <h1>Loading Meetups...</h1>
+        <p>Loading Meetups...</p>
       </section>
     );
   }

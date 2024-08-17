@@ -1,7 +1,11 @@
 import { NavLink } from "react-router-dom";
 import styles from "./MainNavigation.module.css";
+import { useContext } from "react";
+import { FavoritesContext } from "../../store/context/Favorites-Context";
 
 export default function MainNavigation() {
+  const favoriteContext = useContext(FavoritesContext);
+
   return (
     <header className={styles.header}>
       <div className={styles.logo}>React Form Meet Ups</div>
@@ -14,7 +18,12 @@ export default function MainNavigation() {
             <NavLink to="/new-meetup">Add New MeetUp</NavLink>
           </li>
           <li>
-            <NavLink to="/favorites">My Favorites</NavLink>
+            <NavLink to="/favorites">
+              My Favorites
+              <span className={styles.badge}>
+                {favoriteContext.totalFavorites}
+              </span>
+            </NavLink>
           </li>
         </ul>
       </nav>
@@ -58,44 +67,6 @@ export default function MainNavigation() {
     //             fontWeight: isActive ? "bold" : "normal",
     //             color: isActive ? "#ff6347" : "white",
     //           })}
-    //         >
-    //           My Favorites
-    //         </NavLink>
-    //       </li>
-    //     </ul>
-    //   </nav>
-    // </header>
-
-    // <header className={styles.header}>
-    //   <div className={styles.logo}>React Form Meet Ups</div>
-    //   <nav>
-    //     <ul>
-    //       <li>
-    //         <NavLink
-    //           to="/"
-    //           className={({ isActive }) =>
-    //             isActive ? "active link-active" : "link"
-    //           }
-    //         >
-    //           All Meet Ups
-    //         </NavLink>
-    //       </li>
-    //       <li>
-    //         <NavLink
-    //           to="/new-meetup"
-    //           className={({ isActive }) =>
-    //             isActive ? "active link-active" : "link"
-    //           }
-    //         >
-    //           Add New MeetUp
-    //         </NavLink>
-    //       </li>
-    //       <li>
-    //         <NavLink
-    //           to="/favorites"
-    //           className={({ isActive }) =>
-    //             isActive ? "active link-active" : "link"
-    //           }
     //         >
     //           My Favorites
     //         </NavLink>

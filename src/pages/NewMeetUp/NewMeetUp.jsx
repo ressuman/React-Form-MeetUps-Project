@@ -9,7 +9,9 @@ export const NewMeetUp = () => {
   async function addMeetUpHandler(meetUpData) {
     try {
       const response = await axios.post(
-        import.meta.env.VITE_REACT_BACKEND_FIREBASE_DATABASE_SERVER_URL,
+        `${
+          import.meta.env.VITE_REACT_BACKEND_FIREBASE_DATABASE_SERVER_URL
+        }/meetups.json`,
         meetUpData
       );
       console.log("Meetup added successfully:", response.data);
