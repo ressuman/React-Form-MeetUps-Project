@@ -1,32 +1,53 @@
+import { useEffect, useState } from "react";
 import MeetUpList from "../../components/MeetUpList/MeetUpList";
 import classes from "./AllMeetUps.module.css";
-
-const DUMMY_DATA = [
-  {
-    id: "m1",
-    title: "This is a first meetup",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg",
-    address: "Meetupstreet 5, 12345 Meetup City",
-    description:
-      "This is a first, amazing meetup which you definitely should not miss. It will be a lot of fun!",
-  },
-  {
-    id: "m2",
-    title: "This is a second meetup",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg",
-    address: "Meetupstreet 5, 12345 Meetup City",
-    description:
-      "This is a first, amazing meetup which you definitely should not miss. It will be a lot of fun!",
-  },
-];
+import axios from "axios";
 
 export const AllMeetUps = () => {
+  const [meetups, setMeetups] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMeetUps = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get(
+          import.meta.env.VITE_REACT_BACKEND_FIREBASE_DATABASE_SERVER_URL
+        );
+        const data = response.data;
+
+        const loadedMeetups = [];
+
+        for (const key in data) {
+          loadedMeetups.push({
+            id: key,
+            ...data[key],
+          });
+        }
+
+        setMeetups(loadedMeetups);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching meetups:", error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchMeetUps();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <section>
+        <h1>Loading Meetups...</h1>
+      </section>
+    );
+  }
+
   return (
     <section>
       <h1>All MeetUps</h1>
-      <MeetUpList meetups={DUMMY_DATA} />
+      <MeetUpList meetups={meetups} />
     </section>
   );
 };
